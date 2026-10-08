@@ -1,0 +1,20 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: "Plus Jakarta Sans", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  button, a, [role="button"], select, label[for], summary { cursor: pointer; }
+  button:disabled { cursor: not-allowed; opacity: 0.6; }
+  :focus-visible { outline: 3px solid #4338ca; outline-offset: 2px; }
+}
+
+@layer components {
+  .btn { @apply inline-flex min-h-11 items-center justify-center gap-2 rounded-xl px-4 py-2 text-sm font-bold transition; }
+  .btn-primary { @apply bg-indigo-700 text-white hover:bg-indigo-800; }
+  .btn-light { @apply border border-slate-300 bg-white text-slate-800 hover:bg-slate-100; }
+  .btn-danger { @apply bg-red-700 text-white hover:bg-red-800; }
+  .field { @apply min-h-11 w-full rounded-xl border border-slate-400 bg-white px-3 py-2 text-slate-900; }
+  .label { @apply mb-1 block text-sm font-bold text-slate-800; }
+  .card { @apply rounded-2xl border border-slate-200 bg-white shadow-sm; }
+}

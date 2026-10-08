@@ -3,7 +3,7 @@
   "configVersion": 1,
   "workspaces": {
     "": {
-      "name": "ifs24031-pabwe2026-sk-p5-nuxt",
+      "name": "ifs24039-pabwe2026-sk-p5-nuxt",
       "dependencies": {
         "@pinia/nuxt": "^1.0.2",
         "@toast-ui/editor": "^3.2.2",

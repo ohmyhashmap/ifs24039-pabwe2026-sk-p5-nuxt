@@ -26,6 +26,6 @@ describe("UsersPage", () => {
     const { wrapper, pinia } = await renderWithProviders(UsersPage);
     useUsersStore(pinia).isLoading = true;
     await flushPromises();
-    expect(wrapper.get("[role=status]").text()).toContain("Memuat");
+    expect(wrapper.get("output").text()).toContain("Memuat");
   });
 });

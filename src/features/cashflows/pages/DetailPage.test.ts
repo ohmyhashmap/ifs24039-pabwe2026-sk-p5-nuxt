@@ -37,7 +37,7 @@ describe("DetailPage", () => {
     const { wrapper, pinia } = await mountDetail();
     useCashFlowsStore(pinia).isCashFlow = true;
     await flushPromises();
-    expect(wrapper.get("[role=status]").text()).toContain("Memuat");
+    expect(wrapper.get("output").text()).toContain("Memuat");
   });
 
   it("menampilkan h1 dan pesan saat transaksi tidak ditemukan", async () => {

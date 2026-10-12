@@ -16,7 +16,7 @@ describe("ProfilePage", () => {
   it("menampilkan status memuat saat profil belum tersedia", async () => {
     vi.mocked(api.getMe).mockResolvedValue(fail() as any);
     const { wrapper } = await renderWithProviders(ProfilePage);
-    expect(wrapper.get("[role=status]").text()).toContain("Memuat profil");
+    expect(wrapper.get("output").text()).toContain("Memuat profil");
   });
 
   it("menampilkan data profil dengan foto", async () => {

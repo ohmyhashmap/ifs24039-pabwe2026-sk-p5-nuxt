@@ -48,5 +48,5 @@ async function savePassword() {
       </form>
     </section>
   </div>
-  <p v-else class="mt-4" role="status">Memuat profil...</p>
+  <output v-else class="mt-4">Memuat profil...</output>
 </template>

@@ -33,7 +33,11 @@ export const parseDate = (s: string) => new Date(String(s).replace(" ", "T"));
 export const formatDate = (s?: string) =>
   s ? new Intl.DateTimeFormat("id-ID", { dateStyle: "long", timeStyle: "short" }).format(parseDate(s)) : "-";
 
-export const toApiDate = (v: string, end = false) => (v ? `${v} ${end ? "23:59:59" : "00:00:00"}` : "");
+export const toApiDate = (v: string, end = false) => {
+  if (!v) return "";
+  const time = end ? "23:59:59" : "00:00:00";
+  return `${v} ${time}`;
+};
 
 /** Alamat foto yang aman dimuat: URL https, atau path relatif dari server API. Selain itu null (pakai inisial). */
 export const photoSrc = (p?: string | null): string | null => {

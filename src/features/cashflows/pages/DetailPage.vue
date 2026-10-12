@@ -22,7 +22,7 @@ async function remove() {
 }
 </script>
 <template>
-  <p v-if="store.isCashFlow" role="status">Memuat transaksi...</p>
+  <output v-if="store.isCashFlow">Memuat transaksi...</output>
   <section v-else-if="!store.cashFlow">
     <RouterLink to="/" class="font-bold text-indigo-800 underline">Kembali ke ringkasan</RouterLink>
     <h1 class="mt-3 text-2xl font-extrabold">Transaksi tidak ditemukan</h1>

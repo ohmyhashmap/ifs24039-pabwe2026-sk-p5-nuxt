@@ -61,6 +61,12 @@ describe("apiFetch", () => {
     expect(res.message).toBe("Data tidak valid: wajib, salah");
   });
 
+  it("memformat nilai objek pada pesan validasi tanpa konversi object default", async () => {
+    vi.stubGlobal("fetch", respond({ status: "fail", data: { field: { email: [{ message: "salah" }] } } }, { ok: false, status: 422 }));
+    const res = await apiFetch("/x");
+    expect(res.message).toBe('Terjadi kesalahan: {"message":"salah"}');
+  });
+
   it("memakai pesan bawaan saat gagal tanpa pesan dan menandai 401", async () => {
     vi.stubGlobal("fetch", respond({ status: "fail" }, { ok: false, status: 401 }));
     const res = await apiFetch("/x");

@@ -8,7 +8,7 @@ onMounted(store.asyncGetUsers);
 </script>
 <template>
   <h1 class="text-2xl font-extrabold">Daftar Pengguna</h1>
-  <p v-if="store.isLoading" class="mt-4" role="status">Memuat pengguna...</p>
+  <output v-if="store.isLoading" class="mt-4">Memuat pengguna...</output>
   <ul v-else class="mt-4 grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
     <li v-for="u in store.users" :key="u.id" class="card flex items-center gap-4 p-4">
       <img v-if="photoSrc(u.photo)" :src="photoSrc(u.photo)" :alt="`Foto ${u.name}`" width="56" height="56" loading="lazy" class="size-14 rounded-full bg-slate-200 object-cover" />

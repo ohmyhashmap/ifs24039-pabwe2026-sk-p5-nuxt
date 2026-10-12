@@ -85,9 +85,9 @@ async function removeAll() {
 
   <section aria-labelledby="h-list" class="mt-6">
     <h2 id="h-list" class="text-lg font-bold">Daftar transaksi</h2>
-    <p v-if="store.isCashFlow" class="mt-2" role="status">Memuat transaksi...</p>
-    <p v-else-if="!store.cashFlows.length" class="mt-2 text-slate-700" role="status">Belum ada transaksi.</p>
-    <div v-else class="card mt-2 overflow-x-auto" role="region" aria-label="Tabel transaksi" tabindex="0">
+    <output v-if="store.isCashFlow" class="mt-2">Memuat transaksi...</output>
+    <output v-else-if="!store.cashFlows.length" class="mt-2 text-slate-700">Belum ada transaksi.</output>
+    <section v-else class="card mt-2 overflow-x-auto" aria-label="Tabel transaksi">
       <table class="w-full min-w-[40rem] text-left text-sm">
         <caption class="sr-only">Daftar transaksi arus kas</caption>
         <thead class="bg-slate-100 text-slate-800">
@@ -108,7 +108,7 @@ async function removeAll() {
           </tr>
         </tbody>
       </table>
-    </div>
+    </section>
   </section>
 
   <AddModal v-if="showAdd" @close="showAdd = false" @saved="reload" />

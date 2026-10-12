@@ -27,8 +27,13 @@ export async function apiFetch(path: string, { method = "GET", body, params, for
     const json = await res.json().catch(() => ({}));
     const ok = res.ok && json.status === "success";
     let message = json.message || (ok ? "Berhasil" : "Terjadi kesalahan");
-    const fields = json.data && json.data.field;
-    if (!ok && fields) message += ": " + Object.values(fields).flat().join(", ");
+    const fields = json.data?.field;
+    if (!ok && fields) {
+      const fieldMessages = Object.values(fields)
+        .flat()
+        .map((value) => typeof value === "string" ? value : JSON.stringify(value));
+      message += ": " + fieldMessages.join(", ");
+    }
     return { ok, message, data: json.data || {}, unauthorized: res.status === 401 };
   } catch {
     return { ok: false, message: "Tidak dapat terhubung ke server", data: {} };

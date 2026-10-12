@@ -4,7 +4,7 @@ import * as api from "../api/cashFlowApi";
 import type { CashFlowPayload, CashFlowQueryParams } from "../api/cashFlowApi";
 import type { ApiResult } from "../../../helpers/apiHelper";
 
-export type { CashFlowQueryParams };
+export type { CashFlowQueryParams } from "../api/cashFlowApi";
 export interface CashFlow {
   id: number; user_id: number; type: "inflow" | "outflow"; source: "cash" | "savings" | "loans";
   label: string; description: string; nominal: number; created_at: string; updated_at: string;
@@ -12,6 +12,15 @@ export interface CashFlow {
 export type CashFlowStats = Record<string, number>;
 export interface CashFlowsState {
   cashFlows: CashFlow[]; cashFlow: CashFlow | null; stats: CashFlowStats; labels: string[];
+}
+
+async function run(loading: { value: boolean }, done: { value: boolean }, fn: () => Promise<ApiResult>) {
+  loading.value = true;
+  done.value = false;
+  const res = await fn();
+  done.value = res.ok;
+  loading.value = false;
+  return res;
 }
 
 export const useCashFlowsStore = defineStore("cashFlows", () => {
@@ -30,15 +39,6 @@ export const useCashFlowsStore = defineStore("cashFlows", () => {
   const isCashFlowDeleted = ref(false);
   const isCashFlowDeleteAll = ref(false);
   const isCashFlowDeletedAll = ref(false);
-
-  async function run(loading: { value: boolean }, done: { value: boolean }, fn: () => Promise<ApiResult>) {
-    loading.value = true;
-    done.value = false;
-    const res = await fn();
-    done.value = res.ok;
-    loading.value = false;
-    return res;
-  }
 
   async function asyncGetCashFlows(params?: CashFlowQueryParams) {
     isCashFlow.value = true;
